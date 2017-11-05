@@ -54,7 +54,7 @@ window.onload= function(){
  }
 function movements()
 {
-
+		var puzzlePieces= document.getElementsByClassName("puzzlepiece");
 		var arr = []; //holds tiles we want
 
 		for(var i=0; i < puzzlePieces.length; i++){
