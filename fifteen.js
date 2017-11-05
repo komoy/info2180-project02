@@ -52,6 +52,16 @@ window.onload= function(){
 
  	}
  }
+ var validate = function(puzzlePieces){
+ 		var puzzlePieces= document.getElementsByClassName("puzzlepiece");
+
+		if(((parseInt($(puzzlePieces).css("top")) - blanky == 100 || parseInt($(puzzlePieces).css("top")) - blanky == -100) && parseInt($(puzzlePieces).css("left")) - blankx == 0)
+			||((parseInt($(puzzlePieces).css("left")) - blankx == 100 || parseInt($(puzzlePieces).css("left")) - blankx == -100) && parseInt($(puzzlePieces).css("top")) - blanky == 0)){
+				return true;
+			}
+
+		else{ return false; }
+	};
 function movements()
 {
 		var puzzlePieces= document.getElementsByClassName("puzzlepiece");
