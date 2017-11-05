@@ -1,8 +1,16 @@
 window.onload= function(){
 	var puzzlePieces= document.getElementsByClassName("puzzlepiece");
 	picture();
-	document.getElementById("shufflebutton").onclick=shuffle(puzzlePieces)
+	document.getElementById("shufflebutton").onclick= function()
+	{
+		times = Math.floor(Math.random() * 100) + 500;
+
+		for(var i=0; i < times; i++){
+			movements();
 	
+
+	}
+		
 }
 
  function picture()
@@ -43,8 +51,31 @@ window.onload= function(){
 
  	}
  }
-function shuffle(puzzlepiece)
+function movements()
 {
-	 for(var j, x, i = puzzlepiece.length; i; j = Math.floor(Math.random() * i), x = puzzlepiece[--i], puzzlepiece[i] = puzzlepiece[j], puzzlepiece[j] = x);
-  return puzzlepiece;
-}
+
+		var arr = []; //holds tiles we want
+
+		for(var i=0; i < puzzlePieces.length; i++){
+			if (validate(puzzlePieces[i]) == true){
+				arr.push(puzzlePieces[i]);
+			}
+		}
+		var blank = arr[Math.floor(Math.random() * arr.length)];
+
+		
+		shuffle(blank);
+
+	};
+	var shuffle = function(blank){
+		var tempx = blankx;
+		var tempy = blanky;
+
+		blanky = parseInt($(blank).css("top"));
+		blankx = parseInt($(blank).css("left"));
+
+        $(blank).css("top", tempy);
+		$(blank).css("left", tempx);
+	};
+
+    
