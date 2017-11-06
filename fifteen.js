@@ -1,6 +1,10 @@
 window.onload= function(){
 	var puzzlePieces= document.getElementsByClassName("puzzlepiece");
 	picture();
+		
+
+		
+
 	document.getElementById("shufflebutton").onclick= function()
 	{
 		times = Math.floor(Math.random() * 100) + 500;
@@ -12,6 +16,9 @@ window.onload= function(){
 	}
 		
 }
+
+
+
 }
 
  function picture()
@@ -48,12 +55,25 @@ window.onload= function(){
 
  		}
  		count+=1;
- 		
+ 		puzzlePieces[i].onmouseover=function(){
+				if (validate(puzzlePieces[i])){
+					puzzlePieces[i].addClass("movepiece")
+				}
+			}
+				puzzlePieces[i].onmouseleave=function(){
+					$(this).removeClass("movepiece")
+				}
+			$(puzzlePieces[i]).on("click", function(){
+			if(validate(this)){ shuffle(this); }
+		});
+ 			
+		}
+	}
+  var blankx = 300;
+    var blanky = 300;
 
- 	}
- }
+ 	var puzzlePieces= document.getElementsByClassName("puzzlepiece");
  var validate = function(puzzlePieces){
- 		var puzzlePieces= document.getElementsByClassName("puzzlepiece");
 
 		if(((parseInt($(puzzlePieces).css("top")) - blanky == 100 || parseInt($(puzzlePieces).css("top")) - blanky == -100) && parseInt($(puzzlePieces).css("left")) - blankx == 0)
 			||((parseInt($(puzzlePieces).css("left")) - blankx == 100 || parseInt($(puzzlePieces).css("left")) - blankx == -100) && parseInt($(puzzlePieces).css("top")) - blanky == 0)){
@@ -65,7 +85,7 @@ window.onload= function(){
 function movements()
 {
 		var puzzlePieces= document.getElementsByClassName("puzzlepiece");
-		var arr = []; //holds tiles we want
+		var arr = [];
 
 		for(var i=0; i < puzzlePieces.length; i++){
 			if (validate(puzzlePieces[i]) == true){
@@ -88,5 +108,3 @@ function movements()
         $(blank).css("top", tempy);
 		$(blank).css("left", tempx);
 	};
-
-    
