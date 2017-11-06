@@ -56,7 +56,7 @@ window.onload= function(){
  		}
  		count+=1;
  		puzzlePieces[i].onmouseover=function(){
-				if (validate(puzzlePieces[i])){
+				if (nearblank(puzzlePieces[i])){
 					puzzlePieces[i].addClass("movepiece")
 				}
 			}
@@ -64,7 +64,7 @@ window.onload= function(){
 					$(this).removeClass("movepiece")
 				}
 			$(puzzlePieces[i]).on("click", function(){
-			if(validate(this)){ shuffle(this); }
+			if(nearblank(this)){ shuffle(this); }
 		});
  			
 		}
@@ -73,7 +73,7 @@ window.onload= function(){
     var blanky = 300;
 
  	var puzzlePieces= document.getElementsByClassName("puzzlepiece");
- var validate = function(puzzlePieces){
+ var nearblank= function(puzzlePieces){
 
 		if(((parseInt($(puzzlePieces).css("top")) - blanky == 100 || parseInt($(puzzlePieces).css("top")) - blanky == -100) && parseInt($(puzzlePieces).css("left")) - blankx == 0)
 			||((parseInt($(puzzlePieces).css("left")) - blankx == 100 || parseInt($(puzzlePieces).css("left")) - blankx == -100) && parseInt($(puzzlePieces).css("top")) - blanky == 0)){
@@ -88,7 +88,7 @@ function movements()
 		var arr = [];
 
 		for(var i=0; i < puzzlePieces.length; i++){
-			if (validate(puzzlePieces[i]) == true){
+			if (nearblank(puzzlePieces[i]) == true){
 				arr.push(puzzlePieces[i]);
 			}
 		}
